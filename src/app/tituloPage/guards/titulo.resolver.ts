@@ -42,7 +42,7 @@ export class TituloResolver implements Resolve<Titulo> {
     return of({
       id: '',
       nome: '',
-      ator: atores,
+      atores: atores,
       diretor: diretor ,
       ano: '',
       sinopse: '',

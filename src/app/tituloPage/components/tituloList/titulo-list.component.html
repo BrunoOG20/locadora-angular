@@ -28,8 +28,9 @@
 
   <ng-container matColumnDef="atores">
     <mat-header-cell *matHeaderCellDef> Ator(es) </mat-header-cell>
-    <mat-cell *matCellDef="let titulo"> {{titulo.ator}} </mat-cell>
+    <mat-cell *matCellDef="let titulo">{{ mostrarAtores(titulo.atores) }}</mat-cell>
   </ng-container>
+
 
   <ng-container matColumnDef="diretor">
     <mat-header-cell *matHeaderCellDef> Diretor </mat-header-cell>

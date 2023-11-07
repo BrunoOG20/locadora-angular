@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Titulo} from "../../../models/titulo";
+import { Ator } from 'src/app/models/ator';
 
 @Component({
   selector: 'app-titulo-list',
@@ -19,6 +20,10 @@ export class TituloListComponent implements OnInit{
   }
 
   ngOnInit(): void {
+  }
+
+  mostrarAtores(atores: Ator[]) {
+    return atores.map(ator => ator.nome).join(', ');
   }
 
   onAdd(){

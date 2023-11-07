@@ -5,7 +5,7 @@ import { Diretor } from "./diretor"
 export interface Titulo{
     id: string,
     nome: string,
-    ator: Ator[],
+    atores: Ator[],
     diretor: Diretor,
     ano: string,
     sinopse: string,

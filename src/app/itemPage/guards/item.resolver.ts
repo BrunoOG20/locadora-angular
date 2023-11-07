@@ -42,14 +42,14 @@ export class ItemResolver implements Resolve<Item> {
     const titulo: Titulo = {
       id: '',
       nome: '',
-      ator: atores,
+      atores: atores,
       diretor: diretor,
       ano: '',
       sinopse: '',
       categoria: '',
       classe: classe
-  
-  
+
+
       };
 
     return of({

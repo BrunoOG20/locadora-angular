@@ -71,7 +71,7 @@ export class TituloFormComponent implements OnInit{
       diretor: new FormControl(''),
       classe: new FormControl(''),
       atores: new FormControl(''),
-  
+
     });
 
     if(this.titulo) this.form.patchValue(this.titulo);
@@ -113,14 +113,14 @@ export class TituloFormComponent implements OnInit{
       next: (atores: Ator[]) => {
         const values: Ator[] = [];
         this.atorData.push(...atores);
-        this.titulo.ator.forEach(ator => {
+        this.titulo.atores.forEach(ator => {
           const add = this.atorData.find(a2 => a2.id === ator.id);
           if (add) values.push(add);
         })
         this.form.controls['atores'].setValue(values);
       }
     })
-  } 
+  }
 
   onSubmit(){
       if (this.form.valid) {
