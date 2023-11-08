@@ -6,7 +6,7 @@
 
     <form [formGroup]="form">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Numero de Serie" formControlName="numSerie" #numSerie>
+        <input matInput placeholder="Numero de Serie" formControlName="numSerie" type="number" min="0" #numSerie>
         <mat-error *ngIf="form.get('numSerie')?.invalid">{{
           getErrorMessage('numSerie')
           }}</mat-error>
@@ -20,8 +20,11 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Tipo" formControlName="tipoItem" #tipoItem>
-        <mat-hint align="end">{{ tipoItem.value.length || 0}} / 100</mat-hint>
+        <mat-select placeholder="Selecione o tipo" formControlName="tipoItem" #tipoItem>
+          <mat-option value="fita">Fita</mat-option>
+          <mat-option value="dvd">DVD</mat-option>
+          <mat-option value="blueray">BlueRay</mat-option>
+        </mat-select>
         <mat-error *ngIf="form.get('tipoItem')?.invalid">{{
           getErrorMessage('tipoItem')
           }}</mat-error>
