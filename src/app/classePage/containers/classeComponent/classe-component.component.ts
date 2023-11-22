@@ -74,10 +74,17 @@ export class ClasseComponent implements OnInit {
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover Classe.')
+          (error) => {
+            if (error.status === 409) {
+              this.onError(error.error.message);
+            } else {
+              () => this.onError('Erro ao tentar remover Classe.')
+            }
+          }
         )
       }
     })
+    
   }
 
 

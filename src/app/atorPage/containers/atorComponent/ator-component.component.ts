@@ -74,13 +74,16 @@ export class AtorComponent implements OnInit {
               horizontalPosition: 'center'
             });
           },
+          (error) => {
+            if (error.status === 409) {
+              this.onError(error.error.message);
           () => this.onError('Erro ao tentar remover Ator.')
+            }
+          }
         )
       }
     })
+    
   }
-
-
-
 
 }

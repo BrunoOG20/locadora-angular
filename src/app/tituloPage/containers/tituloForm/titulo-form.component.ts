@@ -76,8 +76,6 @@ export class TituloFormComponent implements OnInit{
 
     if(this.titulo) this.form.patchValue(this.titulo);
 
-    console.log(this.form.value);
-
   }
 
   private preencherClasse() {
