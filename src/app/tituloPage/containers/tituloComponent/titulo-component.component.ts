@@ -62,7 +62,7 @@ export class TituloComponent implements OnInit {
 
   onRemove(titulo: Titulo){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover essa Titulo?'
+      data: 'Tem certeza que deseja remover esse Titulo?'
     })
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
@@ -76,10 +76,17 @@ export class TituloComponent implements OnInit {
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover Titulo.')
+          (error) => {
+            if (error.status === 409) {
+              this.onError(error.error.message);
+            } else {
+              () => this.onError('Erro ao tentar remover Titulo.')
+            }
+          }
         )
       }
     })
+    
   }
 
 

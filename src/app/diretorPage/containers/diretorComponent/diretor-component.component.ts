@@ -59,7 +59,7 @@ export class DiretorComponent implements OnInit {
 
   onRemove(diretor: Diretor){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse Diretor?'
+      data: 'Tem certeza que deseja remover essa Classe?'
     })
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
@@ -73,10 +73,17 @@ export class DiretorComponent implements OnInit {
               horizontalPosition: 'center'
             });
           },
-          () => this.onError('Erro ao tentar remover Diretor.')
+          (error) => {
+            if (error.status === 409) {
+              this.onError(error.error.message);
+            } else {
+              () => this.onError('Erro ao tentar remover Diretor.')
+            }
+          }
         )
       }
     })
+    
   }
 
 
