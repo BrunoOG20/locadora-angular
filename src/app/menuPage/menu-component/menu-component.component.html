@@ -6,12 +6,32 @@
     <div class="mat-card-subtitle">
       <p>CRUD Angular - Desenvolvimento Web II</p>
       <div class="mat-button-container">
-        <button mat-raised-button color="primary" routerLink="/ator">Ator</button>
-        <button mat-raised-button color="primary" routerLink="/classe">Classe</button>
-        <button mat-raised-button color="primary" routerLink="/diretor">Diretor</button>
-        <button mat-raised-button color="primary" routerLink="/titulo">Titulo</button>
-        <button mat-raised-button color="primary" routerLink="/item">Item</button>
+
+        <button mat-button [matMenuTriggerFor]="categoriasMenu" class="button" color="#fff">
+          CATEGORIAS
+        </button>
+
+        <button mat-button [matMenuTriggerFor]="controleMenu" class="button" color="#fff">
+          CONTROLE
+        </button>
+
       </div>
     </div>
   </div>
+</div>
+
+<div class="mat-button-container">
+  <mat-menu #categoriasMenu="matMenu">
+    <button mat-menu-item routerLink="/ator">Ator</button>
+    <button mat-menu-item routerLink="/classe">Classe</button>
+    <button mat-menu-item routerLink="/diretor">Diretor</button>
+    <button mat-menu-item routerLink="/titulo">Titulo</button>
+    <button mat-menu-item routerLink="/item">Item</button>
+  </mat-menu>
+
+  <mat-menu #controleMenu="matMenu">
+    <button mat-menu-item routerLink="/">Locação e Devolução</button>
+    <button mat-menu-item routerLink="/cliente">Cliente</button>
+    <button mat-menu-item routerLink="/">Funcionário</button>
+  </mat-menu>
 </div>
