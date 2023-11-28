@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Ator } from '../../models/ator';
 import { delay, first, tap } from 'rxjs/operators';
 import { Socio } from 'src/app/models/socio';
 @Injectable({

@@ -40,8 +40,8 @@ export class SocioFormComponent implements OnInit{
   ngOnInit() {
     this.socio = this.route.snapshot.data['socio'];
 
-    this.preencherLocacao();
-    this.preencherDependentes();
+    //this.preencherLocacao();
+    //this.preencherDependentes();
 
 
     this.form = this.formBuilder.group({
@@ -57,7 +57,7 @@ export class SocioFormComponent implements OnInit{
       sexo: ['', [
         Validators.required,
         Validators.minLength(1),
-        Validators.maxLength(2)]],
+        Validators.maxLength(50)]],
       telefone: ['', [
           Validators.required,
           Validators.minLength(1),
@@ -66,39 +66,15 @@ export class SocioFormComponent implements OnInit{
           Validators.required,
           Validators.minLength(1),
           Validators.maxLength(11)]],
-      dependente: new FormControl(''),
-      locacoes: new FormControl(''),
+      endereco: ['', [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(11)]],
     });
 
     if(this.socio) this.form.patchValue(this.socio);
-  }
 
-  private preencherLocacao(){
-    this.locacaoService.list().subscribe({
-      next: (locacoes: Locacao[]) => {
-        const values: Locacao[] = [];
-        this.locacaoData.push(...locacoes);
-        this.socio.locacoes.forEach(locacao => {
-          const add = this.locacaoData.find(a2 => a2.id === locacao.id);
-          if (add) values.push(add);
-        })
-        this.form.controls['locacoes'].setValue(values);
-      }
-    })
-  }
-
-  private preencherDependentes(){
-    this.dependenteService.list().subscribe({
-      next: (dependentes: Dependente[]) => {
-        const values: Dependente[] = [];
-        this.dependenteData.push(...dependentes);
-        this.socio.dependentes.forEach(dependente => {
-          const add = this.dependenteData.find(a2 => a2.id === dependente.id);
-          if (add) values.push(add);
-        })
-        this.form.controls['dependentes'].setValue(values);
-      }
-    })
+    console.log(this.form.value)
   }
 
   onSubmit(){

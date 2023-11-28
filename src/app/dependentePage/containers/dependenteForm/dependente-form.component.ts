@@ -56,8 +56,7 @@ export class DependenteFormComponent implements OnInit{
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(100)]],
-      socio: new FormControl(''),
-      locacoes: new FormControl(''),
+      socio: new FormControl('')
 
     });
 

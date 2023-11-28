@@ -6,8 +6,8 @@ import { SocioResolver } from './guards/socio.resolver';
 
 const routes: Routes = [
   { path: '', component: SocioComponent },
-  { path: 'novo', component: SocioFormComponent, resolve: { ator: SocioResolver }  },
-  { path: 'editar/:id', component: SocioFormComponent, resolve: { ator: SocioResolver } }
+  { path: 'novo', component: SocioFormComponent, resolve: { socio: SocioResolver }  },
+  { path: 'editar/:id', component: SocioFormComponent, resolve: { socio: SocioResolver } }
 ];
 
 @NgModule({

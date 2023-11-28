@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Ator} from "../../../models/ator";
 import {SocioService} from "../../services/socio.service";
 import {catchError, config, Observable, of} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorDialogComponent} from "../../../shared/components/error-dialog/error-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {
   ConfirmationDialogComponent
 } from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
@@ -55,18 +53,18 @@ export class SocioComponent implements OnInit {
     this.router.navigate(['novo'], {relativeTo: this.route});
   }
 
-  onEdit(ator: Ator){
-    this.router.navigate(['editar' , ator.id], { relativeTo: this.route });
+  onEdit(socio: Socio){
+    this.router.navigate(['editar' , socio.id], { relativeTo: this.route });
   }
 
-  onRemove(ator: Ator){
+  onRemove(socio: Socio){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: 'Tem certeza que deseja remover esse Socio?'
     })
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result){
-        this.socioService.remove(ator.id).subscribe(
+        this.socioService.remove(socio.id).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Socio removido com sucesso.', 'X', {

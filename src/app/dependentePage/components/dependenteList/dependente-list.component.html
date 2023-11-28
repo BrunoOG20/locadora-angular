@@ -11,19 +11,19 @@
     <mat-cell *matCellDef="let dependente"> {{dependente.nome}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="telefone">
-    <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.nome}} </mat-cell>
-  </ng-container>
-
   <ng-container matColumnDef="sexo">
     <mat-header-cell *matHeaderCellDef> Sexo </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.nome}} </mat-cell>
+    <mat-cell *matCellDef="let dependente"> {{dependente.sexo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="socio">
+    <mat-header-cell *matHeaderCellDef> Socio </mat-header-cell>
+    <mat-cell *matCellDef="let dependente"> {{dependente.socio.nome}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="dtNascimento">
     <mat-header-cell *matHeaderCellDef> Data de Nascimento </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.dtAquisicao | date: 'dd/MM/yyyy'}} </mat-cell>
+    <mat-cell *matCellDef="let dependente"> {{dependente.dtNascimento | date: 'dd/MM/yyyy'}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="acoes">

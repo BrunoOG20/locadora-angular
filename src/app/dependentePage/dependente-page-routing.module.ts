@@ -6,8 +6,8 @@ import { DependenteFormComponent } from './containers/dependenteForm/dependente-
 
 const routes: Routes = [
   { path: '', component: DependenteComponent },
-  { path: 'novo', component: DependenteFormComponent, resolve: { ator: DependenteResolver }  },
-  { path: 'editar/:id', component: DependenteFormComponent, resolve: { ator: DependenteResolver } }
+  { path: 'novo', component: DependenteFormComponent, resolve: { dependente: DependenteResolver }  },
+  { path: 'editar/:id', component: DependenteFormComponent, resolve: { dependente: DependenteResolver } }
 ];
 
 @NgModule({

@@ -13,17 +13,22 @@
 
   <ng-container matColumnDef="telefone">
     <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.nome}} </mat-cell>
+    <mat-cell *matCellDef="let socio"> {{socio.telefone}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="sexo">
     <mat-header-cell *matHeaderCellDef> Sexo </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.nome}} </mat-cell>
+    <mat-cell *matCellDef="let socio"> {{socio.sexo}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="dtNascimento">
     <mat-header-cell *matHeaderCellDef> Data de Nascimento </mat-header-cell>
-    <mat-cell *matCellDef="let socio"> {{socio.dtAquisicao | date: 'dd/MM/yyyy'}} </mat-cell>
+    <mat-cell *matCellDef="let socio"> {{socio.dtNascimento | date: 'dd/MM/yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="endereco">
+    <mat-header-cell *matHeaderCellDef> Endereco </mat-header-cell>
+    <mat-cell *matCellDef="let socio"> {{socio.endereco}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="cpf">

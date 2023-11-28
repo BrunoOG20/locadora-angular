@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dependente } from 'src/app/models/dependente';
-import { Locacao } from 'src/app/models/locacao';
 
 @Component({
   selector: 'app-dependente-list',
@@ -14,7 +13,7 @@ export class DependenteListComponent implements OnInit{
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'nome', 'telefone', 'sexo', 'dtNascimento', 'acoes']
+  readonly displayedColumns = ['id', 'nome', 'sexo', 'dtNascimento', 'socio', 'acoes']
 
   constructor() {
   }

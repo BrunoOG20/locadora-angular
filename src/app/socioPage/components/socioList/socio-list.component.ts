@@ -14,7 +14,7 @@ export class SocioListComponent implements OnInit{
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'nome', 'telefone', 'sexo', 'cpf', 'dtNascimento', 'acoes']
+  readonly displayedColumns = ['id', 'nome', 'telefone', 'sexo', 'cpf', 'endereco', 'dtNascimento', 'acoes']
 
   constructor() {
   }
