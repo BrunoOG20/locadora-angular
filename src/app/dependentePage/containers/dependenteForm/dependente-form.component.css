@@ -1,0 +1,42 @@
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.card-container{
+  margin-top: 1rem;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.min-width {
+  width: 100%;
+  min-width: 150px;
+}
+
+.btn-space {
+  margin-left: 5px;
+}
+
+.actions-center {
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-array-error {
+  text-align: left;
+}
+
+.dropdown{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

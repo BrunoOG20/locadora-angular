@@ -1,0 +1,25 @@
+<mat-card>
+
+  <mat-toolbar class="nav" color="primary">
+    <span>Socios Cadastrados </span>
+    <button mat-raised-button color="accent" (click)="onAdd()">+ Novo Socio</button>
+  </mat-toolbar>
+
+  <div class="column-flex mat-elevation-z8">
+
+    <app-socio-list
+      *ngIf="socios$ | async as socios; else loading"
+      [socios]="socios"
+      (add)="onAdd()"
+      (edit)="onEdit($event)"
+      (remove)="onRemove($event)"
+    ></app-socio-list>
+
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+
+  </div>
+</mat-card>

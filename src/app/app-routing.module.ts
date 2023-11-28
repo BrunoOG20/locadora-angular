@@ -26,6 +26,22 @@ const routes: Routes = [
   {
     path: 'item',
     loadChildren: () => import('./itemPage/item-page.module').then(m => m.ItemPageModule)
+  },
+  {
+    path: 'cliente',
+    loadChildren: () => import('./clienteMenuPage/cliente-page.module').then(m => m.ClientePageModule)
+  },
+  {
+    path: 'dependente',
+    loadChildren: () => import('./dependentePage/dependente-page.module').then(m => m.DependentePageModule)
+  },
+  {
+    path: 'socio',
+    loadChildren: () => import('./socioPage/socio-page.module').then(m => m.SocioPageModule)
+  },
+  {
+    path: 'locacao',
+    loadChildren: () => import('./locacaoPage/locacao-page.module').then(m => m.LocacaoPageModule)
   }
 ];
 

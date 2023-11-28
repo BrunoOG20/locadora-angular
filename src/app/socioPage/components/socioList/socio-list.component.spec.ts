@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SocioListComponent } from './socio-list.component';
+
+describe('AtorListComponent', () => {
+  let component: SocioListComponent;
+  let fixture: ComponentFixture<SocioListComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [SocioListComponent]
+    });
+    fixture = TestBed.createComponent(SocioListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

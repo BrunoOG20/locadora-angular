@@ -1,0 +1,80 @@
+<mat-card>
+
+  <mat-toolbar>Detalhes do Socio</mat-toolbar>
+
+  <mat-card-content class="card-container">
+
+    <form [formGroup]="form">
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nome" formControlName="nome" #nome>
+        <mat-hint align="end">{{ nome.value.length || 0}} / 100</mat-hint>
+        <mat-error *ngIf="form.get('nome')?.invalid">{{
+          getErrorMessage('nome')
+          }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Selecione o seu sexo" formControlName="sexo" #sexo>
+          <mat-option value="m">Masculino</mat-option>
+          <mat-option value="f">Feminino</mat-option>
+          <mat-option value="ne">Não especificado</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('sexo')?.invalid">{{
+          getErrorMessage('sexo')
+          }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Data de Nascimento" formControlName="dtNascimento" type="date">
+        <mat-error *ngIf="form.get('dtNascimento')?.invalid">{{
+          getErrorMessage('dtNascimento')
+          }}</mat-error>
+      </mat-form-field>
+
+      <div class="dropdown">
+
+      <mat-form-field >
+        <input matInput type="tel" maxlength="11" placeholder="Telefone" formControlName="telefone" #telefone pattern="\(\d{2}\)\d{5}-\d{4}" required>
+        <mat-hint align="end">{{ telefone.value.length || 0}} / 11</mat-hint>
+        <mat-error *ngIf="form.get('telefone')?.invalid">{{
+          getErrorMessage('telefone')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput maxlength="11" placeholder="CPF Somente numeros" formControlName="cpf" #cpf pattern="\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11}" required>
+        <mat-hint align="end">{{ cpf.value.length || 0}} / 11</mat-hint>
+        <mat-error *ngIf="form.get('cpf')?.invalid">{{
+          getErrorMessage('cpf')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Locação</mat-label>
+        <mat-select formControlName="locacoes" multiple required>
+          <mat-option *ngFor="let locacao of locacaoData" [value]="locacao">{{locacao.id}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dependentes</mat-label>
+        <mat-select formControlName="dependente" multiple required>
+          <mat-option *ngFor="let dependente of dependenteData" [value]="dependente">{{dependente.nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions class="actions-center">
+    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>

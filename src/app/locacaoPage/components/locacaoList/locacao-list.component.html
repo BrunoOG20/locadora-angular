@@ -1,0 +1,39 @@
+
+<mat-table [dataSource]="locacoes">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell  *matHeaderCellDef > ID </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.id}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="acoes">
+    <mat-header-cell *matHeaderCellDef class="action-column">
+      Ações
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let locacao" class="action-column">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Editar Locacao"
+        (click)="onEdit(locacao)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Remover Locacao"
+        (click)="onDelete(locacao)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

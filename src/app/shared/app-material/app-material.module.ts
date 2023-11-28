@@ -25,12 +25,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatSelectModule,
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
 
   ],
 })
