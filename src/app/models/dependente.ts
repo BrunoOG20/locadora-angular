@@ -8,4 +8,5 @@ export interface Dependente {
   dtNascimento: Date;
   socio: Socio
   locacoes: Locacao[];
+  estahAtivo: string
 }

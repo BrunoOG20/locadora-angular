@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemFormComponent } from './item-form.component';
+import { LocacaoFormComponent } from './locacao-form.component';
 
-describe('ItemFormComponent', () => {
-  let component: ItemFormComponent;
-  let fixture: ComponentFixture<ItemFormComponent>;
+describe('LocacaoFormComponent', () => {
+  let component: LocacaoFormComponent;
+  let fixture: ComponentFixture<LocacaoFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ItemFormComponent]
+      declarations: [LocacaoFormComponent]
     });
-    fixture = TestBed.createComponent(ItemFormComponent);
+    fixture = TestBed.createComponent(LocacaoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

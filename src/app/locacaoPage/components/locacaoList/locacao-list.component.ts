@@ -14,7 +14,7 @@ export class LocacaoListComponent implements OnInit{
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'acoes']
+  readonly displayedColumns = ['id', 'dtLocacao', 'dtDevolucaoPrevista', 'dtDevolucaoEfetiva', 'valorCobrado', 'multaCobrada', 'cliente', 'item', 'acoes']
 
   constructor() {
   }

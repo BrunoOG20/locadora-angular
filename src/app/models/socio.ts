@@ -1,3 +1,4 @@
+import { Cliente } from "./cliente";
 import { Dependente } from "./dependente";
 import { Locacao } from "./locacao";
 
@@ -11,4 +12,5 @@ export interface Socio {
   endereco: string;
   dependentes: Dependente[];
   locacoes: Locacao[];
+  estahAtivo: string
 }

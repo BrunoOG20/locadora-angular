@@ -1,16 +1,66 @@
 <mat-card>
 
-  <mat-toolbar>Detalhes do Item</mat-toolbar>
+  <mat-toolbar>Detalhes do Locação</mat-toolbar>
 
   <mat-card-content class="card-container">
 
     <form [formGroup]="form">
+
       <mat-form-field class="full-width">
-        <input matInput placeholder="Numero de Serie" formControlName="numSerie" type="number" min="0" #numSerie>
-        <mat-error *ngIf="form.get('numSerie')?.invalid">{{
-          getErrorMessage('numSerie')
+        <mat-label>Data de Locacao</mat-label>
+        <input matInput placeholder="Data de Locacao" formControlName="dtLocacao" type="date">
+        <mat-error *ngIf="form.get('dtLocacao')?.invalid">{{
+          getErrorMessage('dtLocacao')
           }}</mat-error>
       </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Data de Devolucao Prevista</mat-label>
+        <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date">
+        <mat-error *ngIf="form.get('dtDevolucaoPrevista')?.invalid">{{
+          getErrorMessage('dtDevolucaoPrevista')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Data de Devolucao Efetiva</mat-label>
+        <input matInput placeholder="Data de Devolucao Efetiva" formControlName="dtDevolucaoEfetiva" type="date">
+        <mat-error *ngIf="form.get('dtDevolucaoEfetiva')?.invalid">{{
+          getErrorMessage('dtDevolucaoEfetiva')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Valor Cobrado</mat-label>
+        <input matInput placeholder="Valor Cobrado" type="number" formControlName="valorCobrado">
+        <mat-error *ngIf="form.get('valorCobrado')?.invalid">{{
+          getErrorMessage('valorCobrado')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Multa Cobrada</mat-label>
+        <input matInput placeholder="Multa Cobrada" type="number"  formControlName="multaCobrada">
+        <mat-error *ngIf="form.get('multaCobrada')?.invalid">{{
+          getErrorMessage('multaCobrada')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente" required>
+          <mat-option *ngFor="let socio of socioData" [value]="socio">{{socio.nome}}</mat-option>
+          <mat-option *ngFor="let dependente of dependenteData" [value]="dependente">{{dependente.nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Item</mat-label>
+        <mat-select formControlName="item" required>
+          <mat-option *ngFor="let item of itemData" [value]="item">{{item.titulo.nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
 
     </form>
 

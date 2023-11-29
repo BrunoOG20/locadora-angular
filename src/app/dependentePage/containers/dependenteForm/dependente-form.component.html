@@ -6,6 +6,7 @@
 
     <form [formGroup]="form">
       <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="nome" #nome>
         <mat-hint align="end">{{ nome.value.length || 0}} / 100</mat-hint>
         <mat-error *ngIf="form.get('nome')?.invalid">{{
@@ -15,6 +16,7 @@
 
 
     <mat-form-field class="full-width">
+      <mat-label>Data de Nascimento</mat-label>
       <input matInput placeholder="Data de Nascimento" formControlName="dtNascimento" type="date">
       <mat-error *ngIf="form.get('dtNascimento')?.invalid">{{
         getErrorMessage('dtNascimento')
@@ -22,6 +24,7 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
+      <mat-label>Sexo</mat-label>
       <mat-select placeholder="Selecione o seu sexo" formControlName="sexo" #sexo>
         <mat-option value="Masculino">Masculino</mat-option>
         <mat-option value="Feminino">Feminino</mat-option>
@@ -33,12 +36,24 @@
     </mat-form-field>
 
     <div class="dropdown">
-      <mat-form-field>
+      <mat-form-field class="full-width">
         <mat-label>Socio</mat-label>
         <mat-select formControlName="socio" required>
           <mat-option *ngFor="let socio of socioData" [value]="socio">{{socio.nome}}</mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
+        <mat-label>Status</mat-label>
+        <mat-select placeholder="Status" formControlName="estahAtivo" #estahAtivo>
+          <mat-option value="Ativo">Ativo</mat-option>
+          <mat-option value="Inativo">Inativo</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('estahAtivo')?.invalid">{{
+          getErrorMessage('estahAtivo')
+          }}</mat-error>
+      </mat-form-field>
+
     </div>
 
   </form>

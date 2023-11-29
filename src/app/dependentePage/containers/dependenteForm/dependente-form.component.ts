@@ -24,6 +24,7 @@ export class DependenteFormComponent implements OnInit{
   form!: FormGroup;
 
   dependente: Dependente = {} as Dependente;
+  isPaginaEdicao: boolean | undefined;
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private socioService: SocioService,
@@ -56,12 +57,18 @@ export class DependenteFormComponent implements OnInit{
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(100)]],
+      estahAtivo: ['', [
+          Validators.minLength(1),
+          Validators.maxLength(100)]],
       socio: new FormControl('')
 
     });
 
     if(this.dependente) this.form.patchValue(this.dependente);
 
+    this.route.url.subscribe(urlSegments => {
+      this.isPaginaEdicao = urlSegments.some(segment => segment.path === 'editar');
+    });
   }
 
   private preencherSocio() {

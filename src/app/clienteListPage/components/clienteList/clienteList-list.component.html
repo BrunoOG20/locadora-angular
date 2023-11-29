@@ -1,0 +1,33 @@
+
+<mat-table [dataSource]="clientes">
+
+  <ng-container matColumnDef="numInscricao">
+    <mat-header-cell *matHeaderCellDef> Nº Inscricao </mat-header-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.numInscricao}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.nome}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sexo">
+    <mat-header-cell *matHeaderCellDef> Sexo </mat-header-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.sexo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dtNascimento">
+    <mat-header-cell *matHeaderCellDef> Data de Nascimento </mat-header-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.dtNascimento | date: 'dd/MM/yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="estahAtivo">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.estahAtivo}} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

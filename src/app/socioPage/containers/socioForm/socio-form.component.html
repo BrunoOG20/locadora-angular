@@ -7,6 +7,7 @@
     <form [formGroup]="form">
 
       <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="nome" #nome>
         <mat-hint align="end">{{ nome.value.length || 0}} / 100</mat-hint>
         <mat-error *ngIf="form.get('nome')?.invalid">{{
@@ -16,6 +17,7 @@
 
 
       <mat-form-field class="full-width">
+        <mat-label>Sexo</mat-label>
         <mat-select placeholder="Selecione o seu sexo" formControlName="sexo" #sexo>
           <mat-option value="Masculino">Masculino</mat-option>
           <mat-option value="Feminino">Feminino</mat-option>
@@ -28,6 +30,7 @@
 
 
       <mat-form-field class="full-width">
+        <mat-label>Data de Nascimento</mat-label>
         <input matInput placeholder="Data de Nascimento" formControlName="dtNascimento" type="date">
         <mat-error *ngIf="form.get('dtNascimento')?.invalid">{{
           getErrorMessage('dtNascimento')
@@ -35,7 +38,8 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Endereco" formControlName="endereco" #endereco>
+        <mat-label>Endereço</mat-label>
+        <input matInput placeholder="Endereço" formControlName="endereco" #endereco>
         <mat-hint align="end">{{ endereco.value.length || 0}} / 100</mat-hint>
         <mat-error *ngIf="form.get('endereco')?.invalid">{{
           getErrorMessage('endereco')
@@ -44,7 +48,8 @@
 
       <div class="dropdown">
 
-        <mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Telefone</mat-label>
           <input matInput maxlength="11" placeholder="Telefone" formControlName="telefone" #telefone required>
           <mat-hint align="end">{{ telefone.value.length || 0}} / 11</mat-hint>
           <mat-error *ngIf="form.get('telefone')?.invalid">{{
@@ -52,11 +57,23 @@
             }}</mat-error>
         </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>CPF</mat-label>
         <input matInput maxlength="11" placeholder="CPF Somente numeros" formControlName="cpf" #cpf required>
         <mat-hint align="end">{{ cpf.value.length || 0}} / 11</mat-hint>
         <mat-error *ngIf="form.get('cpf')?.invalid">{{
           getErrorMessage('cpf')
+          }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
+        <mat-label>Status</mat-label>
+        <mat-select placeholder="Status" formControlName="estahAtivo" #estahAtivo>
+          <mat-option value="Ativo">Ativo</mat-option>
+          <mat-option value="Inativo">Inativo</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('estahAtivo')?.invalid">{{
+          getErrorMessage('estahAtivo')
           }}</mat-error>
       </mat-form-field>
 

@@ -24,6 +24,7 @@ export class SocioFormComponent implements OnInit{
   form!: FormGroup;
 
   socio: Socio = {} as Socio
+  isPaginaEdicao: boolean | undefined;
 
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -70,11 +71,16 @@ export class SocioFormComponent implements OnInit{
           Validators.required,
           Validators.minLength(1),
           Validators.maxLength(11)]],
+      estahAtivo: ['', [
+          Validators.minLength(1),
+          Validators.maxLength(100)]],
     });
 
     if(this.socio) this.form.patchValue(this.socio);
 
-    console.log(this.form.value)
+    this.route.url.subscribe(urlSegments => {
+      this.isPaginaEdicao = urlSegments.some(segment => segment.path === 'editar');
+    });
   }
 
   onSubmit(){

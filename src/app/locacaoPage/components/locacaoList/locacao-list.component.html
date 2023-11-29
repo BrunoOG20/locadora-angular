@@ -6,6 +6,41 @@
     <mat-cell *matCellDef="let locacao"> {{locacao.id}} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="dtLocacao">
+    <mat-header-cell *matHeaderCellDef> Data de Locacao </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.dtLocacao | date: 'dd/MM/yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dtDevolucaoPrevista">
+    <mat-header-cell *matHeaderCellDef> Data de Devolucao Prevista </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.dtDevolucaoPrevista | date: 'dd/MM/yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dtDevolucaoEfetiva">
+    <mat-header-cell *matHeaderCellDef>  Data de Devolucao Efetica </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.dtDevolucaoEfetiva | date: 'dd/MM/yyyy'}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="valorCobrado">
+    <mat-header-cell *matHeaderCellDef> Valor Cobrado </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.valorCobrado}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="multaCobrada">
+    <mat-header-cell *matHeaderCellDef> Multa Cobrada </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.multaCobrada}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cliente">
+    <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.cliente.nome}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="item">
+    <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+    <mat-cell *matCellDef="let locacao"> {{locacao.item.tipoItem}} </mat-cell>
+  </ng-container>
+
 
   <ng-container matColumnDef="acoes">
     <mat-header-cell *matHeaderCellDef class="action-column">

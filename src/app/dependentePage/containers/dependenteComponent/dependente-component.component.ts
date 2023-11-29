@@ -54,21 +54,21 @@ export class DependenteComponent implements OnInit {
     this.router.navigate(['novo'], {relativeTo: this.route});
   }
 
-  onEdit(ator: Ator){
-    this.router.navigate(['editar' , ator.id], { relativeTo: this.route });
+  onEdit(dependente: Dependente){
+    this.router.navigate(['editar' , dependente.id], { relativeTo: this.route });
   }
 
-  onRemove(ator: Ator){
+  onRemove(dependente: Dependente){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: 'Tem certeza que deseja remover esse Dependente?'
     })
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result){
-        this.dependenteService.remove(ator.id).subscribe(
+        this.dependenteService.remove(dependente.id).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Ator removido com sucesso.', 'X', {
+            this.snackBar.open('Dependente removido com sucesso.', 'X', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
@@ -78,7 +78,7 @@ export class DependenteComponent implements OnInit {
             if (error.status === 409) {
               this.onError(error.error.message);
             } else {
-              () => this.onError('Erro ao tentar remover Ator.')
+              () => this.onError('Erro ao tentar remover Dependente.')
             }
           }
         )
