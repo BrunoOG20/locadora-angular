@@ -7,6 +7,7 @@
     <form [formGroup]="form">
 
       <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="nome" #nome>
         <mat-hint align="end">{{ nome.value.length || 0}} / 100</mat-hint>
         <mat-error *ngIf="form.get('nome')?.invalid">{{
@@ -15,6 +16,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Valor</mat-label>
         <input matInput placeholder="Valor" formControlName="valor">
         <mat-error *ngIf="form.get('valor')?.invalid">{{
           getErrorMessage('valor')
@@ -22,6 +24,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Data de Devolução</mat-label>
         <input matInput placeholder="Data de Devolução" formControlName="dataDevolucao">
         <mat-error *ngIf="form.get('dataDevolucao')?.invalid">{{
           getErrorMessage('dataDevolucao')

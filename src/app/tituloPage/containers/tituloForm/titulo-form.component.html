@@ -5,6 +5,7 @@
   <mat-card-content class="card-container">
 
     <form [formGroup]="form">
+      <mat-label>Nome</mat-label>
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="nome" #nome>
         <mat-hint align="end">{{ nome.value.length || 0}} / 100</mat-hint>
@@ -14,6 +15,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Ano</mat-label>
         <input matInput placeholder="Ano" formControlName="ano" type="number" min="0" >
         <mat-error *ngIf="form.get('ano')?.invalid">{{
           getErrorMessage('ano')
@@ -21,6 +23,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Sinopse</mat-label>
         <input matInput placeholder="Sinopse" formControlName="sinopse" #sinopse>
         <mat-hint align="end">{{ sinopse.value.length || 0}} / 250</mat-hint>
         <mat-error *ngIf="form.get('sinopse')?.invalid">{{
@@ -29,6 +32,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Categoria</mat-label>
         <input matInput placeholder="Categoria" formControlName="categoria" #categoria>
         <mat-hint align="end">{{ categoria.value.length || 0}} / 100</mat-hint>
         <mat-error *ngIf="form.get('categoria')?.invalid">{{

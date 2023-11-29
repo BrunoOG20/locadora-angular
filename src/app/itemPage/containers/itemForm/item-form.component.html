@@ -6,6 +6,7 @@
 
     <form [formGroup]="form">
       <mat-form-field class="full-width">
+        <mat-label>Numero de Serie</mat-label>
         <input matInput placeholder="Numero de Serie" formControlName="numSerie" type="number" min="0" #numSerie>
         <mat-error *ngIf="form.get('numSerie')?.invalid">{{
           getErrorMessage('numSerie')
@@ -13,6 +14,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Data de Aquisicao</mat-label>
         <input matInput placeholder="Data de Aquisicao" formControlName="dtAquisicao" type="date">
         <mat-error *ngIf="form.get('dtAquisicao')?.invalid">{{
           getErrorMessage('dtAquisicao')
@@ -20,6 +22,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Tipo</mat-label>
         <mat-select placeholder="Selecione o tipo" formControlName="tipoItem" #tipoItem>
           <mat-option value="fita">Fita</mat-option>
           <mat-option value="dvd">DVD</mat-option>
