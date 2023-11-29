@@ -11,6 +11,5 @@ export interface Socio {
   dtNascimento: Date;
   endereco: string;
   dependentes: Dependente[];
-  locacoes: Locacao[];
   estahAtivo: string
 }

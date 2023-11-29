@@ -69,17 +69,6 @@ export class DependenteResolver implements Resolve<Dependente> {
       titulo: titulo
     }
 
-    const locacao: Locacao[] = [{
-      id: '',
-      dtLocacao: new Date(),
-      dtDevolucaoPrevista: new Date(),
-      dtDevolucaoEfetiva: new Date(),
-      valorCobrado: 0,
-      multaCobrada: 0,
-      cliente: cliente,
-      item: item
-    }]
-
     const socio: Socio =  {
       id: '',
       nome: '',
@@ -89,21 +78,9 @@ export class DependenteResolver implements Resolve<Dependente> {
       dtNascimento: new Date(),
       endereco: '',
       dependentes: [],
-      locacoes: locacao,
       estahAtivo: ''
     }
 
-    const dependente: Dependente = {
-      id: '',
-      nome: '',
-      sexo: '',
-      dtNascimento: new Date(),
-      socio: socio,
-      locacoes: locacao,
-      estahAtivo: ''
-    }
-
-    socio.dependentes.push(dependente);
 
     return of({
       id: '',
@@ -111,7 +88,6 @@ export class DependenteResolver implements Resolve<Dependente> {
       sexo: '',
       dtNascimento: new Date(),
       socio: socio,
-      locacoes: locacao,
       estahAtivo: ''
     });
 

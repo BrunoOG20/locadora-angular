@@ -17,8 +17,6 @@ import { LocacaoService } from 'src/app/locacaoPage/services/locacao.service';
   styleUrls: ['./dependente-form.component.css']
 })
 export class DependenteFormComponent implements OnInit{
-
-  locacaoData: Locacao[] = [];
   socioData: Socio[] = [];
 
   form!: FormGroup;
@@ -41,7 +39,6 @@ export class DependenteFormComponent implements OnInit{
     this.dependente = this.route.snapshot.data['dependente'];
 
     this.preencherSocio();
-    this.preencherLocacao();
 
     this.form = this.formBuilder.group({
       id: [''],
@@ -82,20 +79,6 @@ export class DependenteFormComponent implements OnInit{
         })
         this.form.controls['socio'].setValue(value)
       },
-    })
-  }
-
-  private preencherLocacao(){
-    this.locacaoService.list().subscribe({
-      next: (locacoes: Locacao[]) => {
-        const values: Locacao[] = [];
-        this.locacaoData.push(...locacoes);
-        this.dependente.locacoes.forEach(locacao => {
-          const add = this.locacaoData.find(a2 => a2.id === locacao.id);
-          if (add) values.push(add);
-        })
-        this.form.controls['locacoes'].setValue(values);
-      }
     })
   }
 

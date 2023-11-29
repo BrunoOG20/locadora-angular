@@ -6,12 +6,10 @@ import { ActivatedRoute } from "@angular/router";
 import { FormUtilsService } from 'src/app/shared/form/form-utils.service';
 import { Locacao } from 'src/app/models/locacao';
 import { LocacaoService } from '../../services/locacao.service';
-import { Socio } from 'src/app/models/socio';
-import { SocioService } from 'src/app/socioPage/services/socio.service';
-import { Dependente } from 'src/app/models/dependente';
-import { DependenteService } from 'src/app/dependentePage/services/dependente.service';
 import { Item } from 'src/app/models/item';
 import { ItemService } from 'src/app/itemPage/services/item.service';
+import { Cliente } from 'src/app/models/cliente';
+import { ClienteService } from 'src/app/clienteListPage/services/clienteList.service';
 
 @Component({
   selector: 'app-locacao-form',
@@ -19,17 +17,17 @@ import { ItemService } from 'src/app/itemPage/services/item.service';
   styleUrls: ['./locacao-form.component.css']
 })
 export class LocacaoFormComponent implements OnInit{
-  socioData: Socio[] = [];
-  dependenteData: Dependente[] = [];
   itemData: Item[] = [];
+  clienteData: Cliente[] = [];
 
   form!: FormGroup;
 
   locacao: Locacao = {} as Locacao
+  isPaginaEdicao: boolean | undefined;
+
 
   constructor(private formBuilder: NonNullableFormBuilder,
-    private socioService: SocioService,
-    private dependenteService: DependenteService,
+    private clienteService: ClienteService,
     private itemService: ItemService,
     private service: LocacaoService,
     private snackBar: MatSnackBar,
@@ -43,66 +41,44 @@ export class LocacaoFormComponent implements OnInit{
   ngOnInit() {
     this.locacao = this.route.snapshot.data['item'];
 
-    this.preencherSocio();
-    this.preencherDependente();
+    this.preencherClientes();
     this.preencherItem();
 
     this.form = this.formBuilder.group({
       id: [''],
-      dtLocacao: ['', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(100)]],
-      dtDevolucaoPrevista: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(10)]],
-      dtDevolucaoEfetiva: ['', [
-        Validators.minLength(1),
-        Validators.maxLength(100)]],
-      valorCobrado: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(100)]],
-       multaCobrada: ['', [
-        Validators.minLength(1),
-        Validators.maxLength(100)]],
-      cliente: new FormControl(''),
-      item: new FormControl('')
-
+      dtLocacao: new FormControl(''),
+      dtDevolucaoPrevista: new FormControl(''),
+      dtDevolucaoEfetiva: new FormControl(''),
+      valorCobrado: new FormControl(''),
+      multaCobrada: new FormControl(''),
+      item: new FormControl(''),
+      cliente: new FormControl('')
     });
+    
+    this.carregarDados(new Date);
 
     if(this.locacao) this.form.patchValue(this.locacao);
+
+    this.route.url.subscribe(urlSegments => {
+      this.isPaginaEdicao = urlSegments.some(segment => segment.path === 'editar');
+    });
   }
 
-  private preencherSocio() {
-    this.socioService.list().subscribe({
-      next: (socio: Socio[]) => {
-        this.socioData.push(...socio)
-        let value: Socio = {} as Socio
-        this.socioData.forEach(socio => {
-          const add = this.locacao.cliente = socio;
+  
+  private preencherClientes() {
+    this.clienteService.list().subscribe({
+      next: (cliente: Cliente[]) => {
+        this.clienteData.push(...cliente)
+        let value: Cliente = {} as Cliente
+        this.clienteData.forEach(cliente => {
+          const add = this.locacao.cliente = cliente;
           if (add) value = add;
         })
-        this.form.controls['socio'].setValue(value)
+        this.form.controls['cliente'].setValue(value)
       },
     })
   }
-
-  private preencherDependente() {
-    this.dependenteService.list().subscribe({
-      next: (dependente: Dependente[]) => {
-        this.dependenteData.push(...dependente)
-        let value: Dependente = {} as Dependente
-        this.dependenteData.forEach(dependente => {
-          const add = this.locacao.cliente = dependente;
-          if (add) value = add;
-        })
-        this.form.controls['dependente'].setValue(value)
-      },
-    })
-  }
-
+  
   private preencherItem() {
     this.itemService.list().subscribe({
       next: (item: Item[]) => {
@@ -117,14 +93,25 @@ export class LocacaoFormComponent implements OnInit{
     })
   }
 
+  private carregarDados(currentDate: Date) {
+    let valorCobrado = this.form.value.item.titulo.classe.valor;
+    let dtDevolucaoPrevista = new Date(currentDate.setDate(currentDate.getDate() + this.form.value.item.titulo.classe.dataDevolucao));
+    this.locacao.dtLocacao = new Date();
+    this.locacao.dtDevolucaoPrevista = dtDevolucaoPrevista;
+    this.locacao.valorCobrado = valorCobrado;
+  }
+
+
   onSubmit(){
-      if (this.form.valid) {
-        this.service.save(this.form.value)
-          .subscribe(result => this.onSuccess(), error => this.onError());
-      } else {
-        this.formUtils.validateAllFormFields(this.form);
-      }
+    console.log(this.form.value.item.titulo)
+
+    if (this.form.valid) {
+      this.service.save(this.form.value)
+        .subscribe(result => this.onSuccess(), error => this.onError());
+    } else {
+      this.formUtils.validateAllFormFields(this.form);
     }
+  }
 
   onCancel(){
     this.location.back();

@@ -69,17 +69,6 @@ export class SocioResolver implements Resolve<Socio> {
       titulo: titulo
     }
 
-    const locacao: Locacao[] = [{
-      id: '',
-      dtLocacao: new Date(),
-      dtDevolucaoPrevista: new Date(),
-      dtDevolucaoEfetiva: new Date(),
-      valorCobrado: 0,
-      multaCobrada: 0,
-      cliente: cliente,
-      item: item
-    }]
-
     const socio: Socio =  {
       id: '',
       nome: '',
@@ -89,7 +78,6 @@ export class SocioResolver implements Resolve<Socio> {
       dtNascimento: new Date(),
       endereco: '',
       dependentes: [],
-      locacoes: locacao,
       estahAtivo: ''
     }
 
@@ -99,7 +87,6 @@ export class SocioResolver implements Resolve<Socio> {
       sexo: '',
       dtNascimento: new Date(),
       socio: socio,
-      locacoes: locacao,
       estahAtivo: ''
     }]
 
@@ -113,7 +100,6 @@ export class SocioResolver implements Resolve<Socio> {
       dtNascimento: new Date(),
       endereco: '',
       dependentes: dependente,
-      locacoes: locacao,
       estahAtivo: ''
 
     });
