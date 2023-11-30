@@ -84,13 +84,34 @@ export class DependenteFormComponent implements OnInit{
 
 
   onSubmit(){
-    if (this.form.valid) {
+    const socioSelecionado = this.form.get('socio')?.value;
+
+    if (socioSelecionado) {
+      this.service.listDependentesPorSocio(socioSelecionado.id).subscribe(dependentes => {
+        if (dependentes.length < 3) {
+          this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => this.onError());
+        } else {
+          this.snackBar.open('Limite máximo de dependentes atingido para este sócio.', '', {
+            duration: 5000,
+            panelClass: ['warningSnackbar']
+          });
+        }
+      });
+    } else {
+      this.snackBar.open('Selecione um sócio para adicionar o dependente.', '', {
+        duration: 5000,
+        panelClass: ['warningSnackbar']
+      });
+    }
+  }
+
+   /* if (this.form.valid) {
       this.service.save(this.form.value)
         .subscribe(result => this.onSuccess(), error => this.onError());
     } else {
       this.formUtils.validateAllFormFields(this.form);
     }
-  }
+  }*/
 
   onCancel(){
     this.location.back();

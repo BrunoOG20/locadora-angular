@@ -44,4 +44,12 @@ export class DependenteService {
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  listDependentesPorSocio(id: number) {
+    const url = `${this.API}/${id}/socio/dependentes`;
+    return this.httpClient.get<Dependente[]>(url)
+      .pipe(
+        first()
+      );
+  }
 }

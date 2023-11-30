@@ -1,6 +1,4 @@
-import { Cliente } from "./cliente";
 import { Dependente } from "./dependente";
-import { Locacao } from "./locacao";
 
 export interface Socio {
   id: string;

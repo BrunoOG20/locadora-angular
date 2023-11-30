@@ -46,16 +46,14 @@ export class LocacaoFormComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       id: [''],
-      dtLocacao: new FormControl(''),
+      dtLocacao: new FormControl(new Date()),
       dtDevolucaoPrevista: new FormControl(''),
       dtDevolucaoEfetiva: new FormControl(''),
       valorCobrado: new FormControl(''),
       multaCobrada: new FormControl(''),
       item: new FormControl(''),
       cliente: new FormControl('')
-    });
-    
-    this.carregarDados(new Date);
+    });    
 
     if(this.locacao) this.form.patchValue(this.locacao);
 
@@ -94,16 +92,16 @@ export class LocacaoFormComponent implements OnInit{
   }
 
   private carregarDados(currentDate: Date) {
-    let valorCobrado = this.form.value.item.titulo.classe.valor;
-    let dtDevolucaoPrevista = new Date(currentDate.setDate(currentDate.getDate() + this.form.value.item.titulo.classe.dataDevolucao));
-    this.locacao.dtLocacao = new Date();
+    let valorCobrado = this.form.value.item.classe.valor;
+    let dtDevolucaoPrevista = new Date(currentDate.setDate(currentDate.getDate() + this.form.value.item.classe.dataDevolucao));
     this.locacao.dtDevolucaoPrevista = dtDevolucaoPrevista;
     this.locacao.valorCobrado = valorCobrado;
   }
 
 
   onSubmit(){
-    console.log(this.form.value.item.titulo)
+    this.carregarDados(new Date);
+    this.form.patchValue(this.locacao);
 
     if (this.form.valid) {
       this.service.save(this.form.value)
