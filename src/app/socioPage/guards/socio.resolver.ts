@@ -25,39 +25,6 @@ export class SocioResolver implements Resolve<Socio> {
       return this.service.loadById(route.params['id']);
     }
 
-    const socio: Socio =  {
-      id: '',
-      nome: '',
-      telefone: '',
-      sexo: '',
-      cpf: '',
-      dtNascimento: new Date(),
-      endereco: '',
-      dependentes: [],
-      estahAtivo: ''
-    }
-
-    const dependente: Dependente[] = [{
-      id: '',
-      nome: '',
-      sexo: '',
-      dtNascimento: new Date(),
-      socio: socio,
-      estahAtivo: ''
-    }]
-
-
-    return of({
-      id: '',
-      nome: '',
-      telefone: '',
-      sexo: '',
-      cpf: '',
-      dtNascimento: new Date(),
-      endereco: '',
-      dependentes: dependente,
-      estahAtivo: ''
-
-    });
+    return of({} as Socio);
   }
 }

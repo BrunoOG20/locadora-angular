@@ -26,7 +26,6 @@ export class DependenteFormComponent implements OnInit{
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private socioService: SocioService,
-    private locacaoService: LocacaoService,
     private service: DependenteService,
     private snackBar: MatSnackBar,
     private location: Location,
@@ -54,9 +53,6 @@ export class DependenteFormComponent implements OnInit{
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(100)]],
-      estahAtivo: ['', [
-          Validators.minLength(1),
-          Validators.maxLength(100)]],
       socio: new FormControl('')
 
     });
@@ -104,14 +100,6 @@ export class DependenteFormComponent implements OnInit{
       });
     }
   }
-
-   /* if (this.form.valid) {
-      this.service.save(this.form.value)
-        .subscribe(result => this.onSuccess(), error => this.onError());
-    } else {
-      this.formUtils.validateAllFormFields(this.form);
-    }
-  }*/
 
   onCancel(){
     this.location.back();

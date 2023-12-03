@@ -9,5 +9,5 @@ export interface Socio {
   dtNascimento: Date;
   endereco: string;
   dependentes: Dependente[];
-  estahAtivo: string
+  estahAtivo: boolean
 }

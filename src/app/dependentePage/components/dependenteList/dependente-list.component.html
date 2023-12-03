@@ -26,6 +26,13 @@
     <mat-cell *matCellDef="let dependente"> {{dependente.dtNascimento | date: 'dd/MM/yyyy'}} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let dependente">
+      <mat-slide-toggle (change)="onChangeStatus(dependente)" [(ngModel)]="dependente.estahAtivo"></mat-slide-toggle>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="acoes">
     <mat-header-cell *matHeaderCellDef class="action-column">
       Ações

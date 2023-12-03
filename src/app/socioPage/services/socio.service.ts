@@ -42,4 +42,9 @@ export class SocioService {
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  changeStatus(status: boolean, id: string) {
+    const options = { params: { status: status} };
+    return this.httpClient.patch(`${this.API}/${id}`, null, options);
+  }
 }

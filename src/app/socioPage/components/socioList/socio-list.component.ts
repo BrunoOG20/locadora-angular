@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Ator} from "../../../models/ator";
 import { Socio } from 'src/app/models/socio';
 
 @Component({
@@ -13,13 +12,17 @@ export class SocioListComponent implements OnInit{
   @Output() add = new EventEmitter(false)
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
+  @Output() changeStatus = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'nome', 'telefone', 'sexo', 'cpf', 'endereco', 'dtNascimento', 'acoes']
+  readonly displayedColumns = ['id', 'nome', 'telefone', 'sexo', 'cpf', 'endereco', 'dtNascimento', 'status', 'acoes']
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.socios.forEach(s => {
+      console.log(s.estahAtivo)
+   });
   }
 
   onAdd(){
@@ -31,7 +34,10 @@ export class SocioListComponent implements OnInit{
   }
 
   onDelete(socio: Socio){
-    this.remove.emit(socio)
+    this.remove.emit(socio);
   }
 
+  onChangeStatus(socio: Socio) {
+    this.changeStatus.emit(socio);
+  }
 }

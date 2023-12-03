@@ -28,8 +28,6 @@ export class SocioFormComponent implements OnInit{
 
 
   constructor(private formBuilder: NonNullableFormBuilder,
-    private dependenteService: DependenteService,
-    private locacaoService: LocacaoService,
     private service: SocioService,
     private snackBar: MatSnackBar,
     private location: Location,
@@ -40,10 +38,6 @@ export class SocioFormComponent implements OnInit{
 
   ngOnInit() {
     this.socio = this.route.snapshot.data['socio'];
-
-    //this.preencherLocacao();
-    //this.preencherDependentes();
-
 
     this.form = this.formBuilder.group({
       id: [''],
@@ -70,10 +64,7 @@ export class SocioFormComponent implements OnInit{
       endereco: ['', [
           Validators.required,
           Validators.minLength(1),
-          Validators.maxLength(11)]],
-      estahAtivo: ['', [
-          Validators.minLength(1),
-          Validators.maxLength(100)]],
+          Validators.maxLength(11)]]
     });
 
     if(this.socio) this.form.patchValue(this.socio);

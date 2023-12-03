@@ -66,17 +66,6 @@
           }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
-        <mat-label>Status</mat-label>
-        <mat-select placeholder="Status" formControlName="estahAtivo" #estahAtivo>
-          <mat-option value="Ativo">Ativo</mat-option>
-          <mat-option value="Inativo">Inativo</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('estahAtivo')?.invalid">{{
-          getErrorMessage('estahAtivo')
-          }}</mat-error>
-      </mat-form-field>
-
     </div>
 
 

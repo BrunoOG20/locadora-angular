@@ -52,4 +52,10 @@ export class DependenteService {
         first()
       );
   }
+
+  changeStatus(status: boolean, id: string) {
+    const options = { params: { status: status} };
+    return this.httpClient.patch(`${this.API}/${id}`, null, options);
+  }
+
 }

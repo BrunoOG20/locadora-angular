@@ -86,4 +86,26 @@ export class SocioComponent implements OnInit {
 
   }
 
+  onChangeStatus(socio: Socio){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: socio.estahAtivo ? "Tem certeza que deseja ativar o(a): " + socio.nome : "Tem certeza que deseja desativar o(a): " + socio.nome
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.socioService.changeStatus(socio.estahAtivo, socio.id).subscribe({
+          next: () =>  this.refresh(),
+          error: (error: any) => {
+            this.onError(error.error);
+            this.refresh();
+        }});
+      } else {
+         this.refresh();
+      }
+    })
+
+
+    }
+
+
 }

@@ -12,8 +12,9 @@ export class DependenteListComponent implements OnInit{
   @Output() add = new EventEmitter(false)
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
+  @Output() changeStatus = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'nome', 'sexo', 'dtNascimento', 'socio', 'acoes']
+  readonly displayedColumns = ['id', 'nome', 'sexo', 'dtNascimento', 'socio', 'status', 'acoes']
 
   constructor() {
   }
@@ -31,6 +32,10 @@ export class DependenteListComponent implements OnInit{
 
   onDelete(dependente: Dependente){
     this.remove.emit(dependente)
+  }
+
+  onChangeStatus(dependente: Dependente) {
+    this.changeStatus.emit(dependente);
   }
 
 }

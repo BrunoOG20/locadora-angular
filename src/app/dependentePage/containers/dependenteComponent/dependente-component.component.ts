@@ -87,4 +87,25 @@ export class DependenteComponent implements OnInit {
 
   }
 
+  onChangeStatus(dependente: Dependente){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: dependente.estahAtivo ? "Tem certeza que deseja ativar o(a): " + dependente.nome : "Tem certeza que deseja desativar o(a): " + dependente.nome
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.dependenteService.changeStatus(dependente.estahAtivo, dependente.id).subscribe({
+          next: () =>  this.refresh(),
+          error: (error: any) => {
+            this.onError(error.error);
+            this.refresh();
+        }});
+      } else {
+         this.refresh();
+      }
+    })
+
+
+    }
+
 }

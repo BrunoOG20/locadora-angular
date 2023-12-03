@@ -1,4 +1,3 @@
-import { Locacao } from "./locacao";
 import { Socio } from "./socio";
 
 export interface Dependente {
@@ -7,5 +6,5 @@ export interface Dependente {
   sexo: string;
   dtNascimento: Date;
   socio: Socio
-  estahAtivo: string
+  estahAtivo: boolean
 }
