@@ -45,4 +45,8 @@ export class ItemService {
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  getItensAtivos() {
+    return this.httpClient.get<Item[]>(`${this.API}/ativos`);
+  }
 }

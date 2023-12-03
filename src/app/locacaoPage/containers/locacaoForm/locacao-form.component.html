@@ -1,14 +1,17 @@
 <mat-card>
 
-  <mat-toolbar>Detalhes do Locação</mat-toolbar>
+  <mat-toolbar class="nav">
+    <span>Detalhes do Locação</span>
+    <button mat-raised-button color="primary" *ngIf="isPaginaEdicao" (click)="devolverLocacao()">+ Nova Devolução</button>
+  </mat-toolbar>
 
   <mat-card-content class="card-container">
 
     <form [formGroup]="form">
 
-      <mat-form-field class="full-width" *ngIf="isPaginaEdicao"> 
+      <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Data de Locacao</mat-label>
-        <input matInput placeholder="Data de Locacao" formControlName="dtLocacao" type="date">
+        <input matInput placeholder="Data de Locacao" formControlName="dtLocacao" type="date" [disabled]="true">
         <mat-error *ngIf="form.get('dtLocacao')?.invalid">{{
           getErrorMessage('dtLocacao')
           }}</mat-error>
@@ -16,7 +19,7 @@
 
       <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Data de Devolucao Prevista</mat-label>
-        <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date">
+        <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date" [disabled]="true">
         <mat-error *ngIf="form.get('dtDevolucaoPrevista')?.invalid">{{
           getErrorMessage('dtDevolucaoPrevista')
           }}</mat-error>
@@ -24,20 +27,20 @@
 
       <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Valor Cobrado</mat-label>
-        <input matInput placeholder="Valor Cobrado" type="number" formControlName="valorCobrado">
+        <input matInput placeholder="Valor Cobrado" type="number" formControlName="valorCobrado" [disabled]="true">
         <mat-error *ngIf="form.get('valorCobrado')?.invalid">{{
           getErrorMessage('valorCobrado')
           }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width" *ngIf="!isPaginaEdicao">
         <mat-label>Cliente</mat-label>
         <mat-select formControlName="cliente" required>
           <mat-option *ngFor="let cliente of clienteData" [value]="cliente">{{cliente.nome}}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width" *ngIf="!isPaginaEdicao">
         <mat-label>Item</mat-label>
         <mat-select formControlName="item" required>
           <mat-option *ngFor="let item of itemData" [value]="item">{{item.titulo.nome}}</mat-option>
@@ -50,7 +53,7 @@
   </mat-card-content>
 
   <mat-card-actions class="actions-center">
-    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button color="primary" (click)="onSalvarForm()">Salvar</button>
     <button mat-raised-button (click)="onCancel()">Cancelar</button>
   </mat-card-actions>
 </mat-card>

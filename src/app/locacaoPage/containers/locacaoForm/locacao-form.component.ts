@@ -35,6 +35,7 @@ export class LocacaoFormComponent implements OnInit{
     private route: ActivatedRoute,
     public formUtils: FormUtilsService
   ) {
+
   }
 
 
@@ -45,7 +46,7 @@ export class LocacaoFormComponent implements OnInit{
     this.preencherItem();
 
     this.form = this.formBuilder.group({
-      id: [''],
+      id: new FormControl(''),
       dtLocacao: new FormControl(new Date()),
       dtDevolucaoPrevista: new FormControl(''),
       dtDevolucaoEfetiva: new FormControl(''),
@@ -53,7 +54,8 @@ export class LocacaoFormComponent implements OnInit{
       multaCobrada: new FormControl(''),
       item: new FormControl(''),
       cliente: new FormControl('')
-    });    
+    });
+
 
     if(this.locacao) this.form.patchValue(this.locacao);
 
@@ -62,33 +64,44 @@ export class LocacaoFormComponent implements OnInit{
     });
   }
 
-  
+
   private preencherClientes() {
-    this.clienteService.list().subscribe({
+    this.clienteService.getClienteAtivos().subscribe({
       next: (cliente: Cliente[]) => {
-        this.clienteData.push(...cliente)
-        let value: Cliente = {} as Cliente
-        this.clienteData.forEach(cliente => {
-          const add = this.locacao.cliente = cliente;
-          if (add) value = add;
-        })
-        this.form.controls['cliente'].setValue(value)
+        this.clienteData.push(...cliente);
+        if(this.locacao.id) {
+          let value: Cliente = {} as Cliente;
+          const add = this.clienteData.find(
+            c => c.numInscricao === this.locacao.cliente.numInscricao
+          );
+          if(add) value = add;
+          this.form.controls['client'].setValue(value);
+        }
       },
-    })
+      error: error => {
+        this.onError("Erro ao carregar Clientes");
+      }
+    });
   }
-  
+
   private preencherItem() {
-    this.itemService.list().subscribe({
+    console.log(this.itemService.getItensAtivos())
+    this.itemService.getItensAtivos().subscribe({
       next: (item: Item[]) => {
-        this.itemData.push(...item)
-        let value: Item = {} as Item
-        this.itemData.forEach(item => {
-          const add = this.locacao.item = item;
-          if (add) value = add;
-        })
-        this.form.controls['item'].setValue(value)
+        this.itemData.push(...item);
+        if(this.locacao.id) {
+          let value: Item = {} as Item;
+          const add = this.itemData.find(
+            item => item.id === this.locacao.item.id
+          );
+          if(add) value = add;
+          this.form.controls['item'].setValue(value);
+        }
       },
-    })
+      error: error => {
+        this.onError("Erro ao carregar Itens");
+      }
+    });
   }
 
   private carregarDados(currentDate: Date) {
@@ -96,16 +109,44 @@ export class LocacaoFormComponent implements OnInit{
     let dtDevolucaoPrevista = new Date(currentDate.setDate(currentDate.getDate() + this.form.value.item.classe.dataDevolucao));
     this.locacao.dtDevolucaoPrevista = dtDevolucaoPrevista;
     this.locacao.valorCobrado = valorCobrado;
+    this.locacao.pago = true;
+  }
+
+  devolverLocacao(){
+    const dataDevolucao = new Date();
+    let dataDevolucaoPrevista = new Date(this.locacao.dtDevolucaoPrevista);
+    let multa = 0
+
+    if (dataDevolucao.getTime() > dataDevolucaoPrevista.getTime()){
+      multa = this.form.value.valorCobrado + this.form.value.item.classe.valor;
+    }
+
+    this.locacao.dtDevolucaoEfetiva = dataDevolucao;
+
+    this.form.patchValue(this.locacao);
+    this.onSubmit();
+  }
+
+  onSalvarForm(){
+    this.carregarDados(new Date);
+    this.form.patchValue(this.locacao);
+    this.onSubmit();
   }
 
 
   onSubmit(){
-    this.carregarDados(new Date);
-    this.form.patchValue(this.locacao);
-
     if (this.form.valid) {
       this.service.save(this.form.value)
-        .subscribe(result => this.onSuccess(), error => this.onError());
+        .subscribe(() => {this.onSuccess()},
+        (error) => {
+            if (error.status === 409) {
+              this.onError(error.error.message);
+            } else {
+              () => this.onError('Erro ao salvar Locacao')
+            }
+          }
+        );
+
     } else {
       this.formUtils.validateAllFormFields(this.form);
     }
@@ -120,8 +161,8 @@ export class LocacaoFormComponent implements OnInit{
     this.onCancel()
   }
 
-  private onError(){
-    this.snackBar.open('Erro ao salvar Locacao', '', {duration: 5000});
+  private onError(message: string){
+    this.snackBar.open(message, '', {duration: 5000});
   }
 
   getErrorMessage(fieldName: string){

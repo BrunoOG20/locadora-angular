@@ -13,8 +13,14 @@ export class LocacaoListComponent implements OnInit{
   @Output() add = new EventEmitter(false)
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
+  @Output() efetuarPagamento = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'dtLocacao', 'dtDevolucaoPrevista', 'dtDevolucaoEfetiva', 'valorCobrado', 'multaCobrada', 'cliente', 'item', 'acoes']
+  readonly displayedColumns = ['id', 'dtLocacao', 'dtDevolucaoPrevista', 'dtDevolucaoEfetiva', 'valorCobrado', 'multaCobrada', 'cliente', 'item', 'pago', 'acoes']
+
+  semPagamento = "Pagar Locação";
+  comPagamento = "Locação Paga";
+
+  devolucaoEfetuada: boolean | undefined;
 
   constructor() {
   }
@@ -32,6 +38,18 @@ export class LocacaoListComponent implements OnInit{
 
   onDelete(locacao: Locacao){
     this.remove.emit(locacao)
+  }
+
+  checarDevolucao(locacao: Locacao){
+    if (locacao.dtDevolucaoEfetiva == null){
+      return true;
+    }
+    return false;
+  }
+
+  pagarLocacao(locacao: Locacao){
+    locacao.pago = true;
+    this.efetuarPagamento.emit(locacao);
   }
 
 }

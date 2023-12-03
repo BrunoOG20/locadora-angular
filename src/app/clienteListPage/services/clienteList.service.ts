@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { first, tap } from 'rxjs/operators';
 import { Cliente } from 'src/app/models/cliente';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ClienteService {
         first(),
         tap(cliente => console.log(cliente))
       );
+  }
+
+  getClienteAtivos(): Observable<Cliente[]> {
+    return this.httpClient.get<Cliente[]>(`${this.API}/ativos`);
   }
 }

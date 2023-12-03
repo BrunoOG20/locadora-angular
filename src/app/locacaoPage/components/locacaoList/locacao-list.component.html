@@ -41,18 +41,31 @@
     <mat-cell *matCellDef="let locacao"> {{locacao.titulo.nome}} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="pago">
+    <mat-header-cell *matHeaderCellDef> Pago </mat-header-cell>
+    <mat-cell *matCellDef="let locacao">
+      <ng-container *ngIf="locacao.pago; else notPago">
+        <mat-icon *ngIf="locacao.dtDevolucaoEfetiva" [matTooltip]="comPagamento" color="primary">paid</mat-icon>
+      </ng-container>
+      <ng-template #notPago>
+        <button *ngIf="locacao.dtDevolucaoEfetiva" (click)="pagarLocacao(locacao)"><mat-icon [matTooltip]="semPagamento" color="warn">paid</mat-icon></button>
+      </ng-template>
+    </mat-cell>
+  </ng-container>
+
 
   <ng-container matColumnDef="acoes">
     <mat-header-cell *matHeaderCellDef class="action-column">
       Ações
     </mat-header-cell>
 
-    <mat-cell *matCellDef="let locacao" class="action-column">
+    <mat-cell *matCellDef="let locacao" class="action-column" >
       <button
         mat-icon-button
         color="primary"
         aria-label="Editar Locacao"
         (click)="onEdit(locacao)"
+        *ngIf="checarDevolucao(locacao)"
       >
         <mat-icon>edit</mat-icon>
       </button>

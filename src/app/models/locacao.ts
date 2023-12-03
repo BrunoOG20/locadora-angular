@@ -8,6 +8,8 @@ export interface Locacao {
   dtDevolucaoEfetiva: Date;
   valorCobrado: number;
   multaCobrada: number;
+  pago: boolean;
   cliente: Cliente;
   item: Item;
+
 }

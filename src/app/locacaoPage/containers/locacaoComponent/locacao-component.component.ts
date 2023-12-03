@@ -57,33 +57,43 @@ export class LocacaoComponent implements OnInit {
     this.router.navigate(['novo'], {relativeTo: this.route});
   }
 
-  onEdit(item: Item){
-    this.router.navigate(['editar' , item.id], { relativeTo: this.route });
+  onEdit(locacao: Locacao){
+    this.router.navigate(['editar' , locacao.id], { relativeTo: this.route });
   }
 
-  onRemove(item: Item){
+  onRemove(locacao: Locacao){
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: 'Tem certeza que deseja remover essa Locacao?'
     })
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result){
-        this.locacaoSevice.remove(item.id).subscribe(
-          () => {
-            this.refresh();
-            this.snackBar.open('Locacao removida com sucesso.', 'X', {
-              duration: 5000,
-              verticalPosition: 'top',
-              horizontalPosition: 'center'
-            });
-          },
-          () => this.onError('Erro ao tentar remover Locacao.')
-        )
+        if (!locacao.pago){
+          this.locacaoSevice.remove(locacao.id).subscribe(
+            () => {
+              this.refresh();
+              this.snackBar.open('Locacao removida com sucesso.', 'X', {
+                duration: 5000,
+                verticalPosition: 'top',
+                horizontalPosition: 'center'
+              });
+            },
+            () => this.onError('Erro ao tentar remover Locacao.')
+          )
+        } else {
+          this.snackBar.open('A locação ja foi paga e não pode ser cancelada.', 'X', {
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        }
       }
     })
   }
 
-
+  efetuarPagamento(locacao: Locacao){
+    this.locacaoSevice.save(locacao).subscribe()
+  }
 
 
 }
