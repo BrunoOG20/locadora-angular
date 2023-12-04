@@ -20,9 +20,6 @@ export class SocioListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.socios.forEach(s => {
-      console.log(s.estahAtivo)
-   });
   }
 
   onAdd(){

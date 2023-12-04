@@ -10,7 +10,7 @@ export class ClienteListComponent implements OnInit{
 
   @Input() clientes: Cliente[] = [];
 
-  readonly displayedColumns = ['numInscricao', 'nome', 'dtNascimento', 'sexo', 'estahAtivo']
+  readonly displayedColumns = ['numInscricao', 'nome', 'dtNascimento', 'sexo','estahAtivo']
 
   constructor() {
   }

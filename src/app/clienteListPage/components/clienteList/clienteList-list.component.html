@@ -23,7 +23,7 @@
 
   <ng-container matColumnDef="estahAtivo">
     <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-    <mat-cell *matCellDef="let cliente"> {{cliente.estahAtivo}} </mat-cell>
+    <mat-cell *matCellDef="let cliente"> {{cliente.estahAtivo ? "Ativo" : "Inativo"}} </mat-cell>
   </ng-container>
 
 

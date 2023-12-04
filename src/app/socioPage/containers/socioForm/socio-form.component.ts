@@ -8,8 +8,6 @@ import { SocioService } from '../../services/socio.service';
 import { Socio } from 'src/app/models/socio';
 import { Dependente } from 'src/app/models/dependente';
 import { Locacao } from 'src/app/models/locacao';
-import { DependenteService } from 'src/app/dependentePage/services/dependente.service';
-import { LocacaoService } from 'src/app/locacaoPage/services/locacao.service';
 
 @Component({
   selector: 'app-socio-form',
@@ -75,6 +73,7 @@ export class SocioFormComponent implements OnInit{
   }
 
   onSubmit(){
+    console.log(this.form.value)
     if (this.form.valid) {
       this.service.save(this.form.value)
         .subscribe(result => this.onSuccess(), error => this.onError());

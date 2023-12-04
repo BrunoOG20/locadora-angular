@@ -10,14 +10,6 @@
     <form [formGroup]="form">
 
       <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
-        <mat-label>Data de Locacao</mat-label>
-        <input matInput placeholder="Data de Locacao" formControlName="dtLocacao" type="date" [disabled]="true">
-        <mat-error *ngIf="form.get('dtLocacao')?.invalid">{{
-          getErrorMessage('dtLocacao')
-          }}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Data de Devolucao Prevista</mat-label>
         <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date" [disabled]="true">
         <mat-error *ngIf="form.get('dtDevolucaoPrevista')?.invalid">{{

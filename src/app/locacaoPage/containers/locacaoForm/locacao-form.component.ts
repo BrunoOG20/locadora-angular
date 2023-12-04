@@ -40,7 +40,7 @@ export class LocacaoFormComponent implements OnInit{
 
 
   ngOnInit() {
-    this.locacao = this.route.snapshot.data['item'];
+    this.locacao = this.route.snapshot.data['locacao'];
 
     this.preencherClientes();
     this.preencherItem();
@@ -75,7 +75,7 @@ export class LocacaoFormComponent implements OnInit{
             c => c.numInscricao === this.locacao.cliente.numInscricao
           );
           if(add) value = add;
-          this.form.controls['client'].setValue(value);
+          this.form.controls['cliente'].setValue(value);
         }
       },
       error: error => {

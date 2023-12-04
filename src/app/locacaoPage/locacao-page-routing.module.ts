@@ -6,8 +6,8 @@ import { LocacaoResolver } from './guards/locacao.resolver';
 
 const routes: Routes = [
   { path: '', component: LocacaoComponent },
-  { path: 'novo', component: LocacaoFormComponent, resolve: { item: LocacaoResolver }  },
-  { path: 'editar/:id', component: LocacaoFormComponent, resolve: { item: LocacaoResolver } }
+  { path: 'novo', component: LocacaoFormComponent, resolve: { locacao: LocacaoResolver }  },
+  { path: 'editar/:id', component: LocacaoFormComponent, resolve: { locacao: LocacaoResolver } }
 ];
 
 @NgModule({
