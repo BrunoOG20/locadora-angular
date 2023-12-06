@@ -53,7 +53,8 @@ export class LocacaoFormComponent implements OnInit{
       valorCobrado: new FormControl(''),
       multaCobrada: new FormControl(''),
       item: new FormControl(''),
-      cliente: new FormControl('')
+      cliente: new FormControl(''),
+      classe: new FormControl('')
     });
 
 
@@ -62,6 +63,9 @@ export class LocacaoFormComponent implements OnInit{
     this.route.url.subscribe(urlSegments => {
       this.isPaginaEdicao = urlSegments.some(segment => segment.path === 'editar');
     });
+
+
+    console.log(this.form.value)
   }
 
 
@@ -116,9 +120,12 @@ export class LocacaoFormComponent implements OnInit{
     const dataDevolucao = new Date();
     let dataDevolucaoPrevista = new Date(this.locacao.dtDevolucaoPrevista);
     let multa = 0
+    let valorClasse: number  =+ this.locacao.classe.valor
 
     if (dataDevolucao.getTime() > dataDevolucaoPrevista.getTime()){
-      multa = this.form.value.valorCobrado + this.form.value.item.classe.valor;
+      console.log(this.locacao.classe)
+      multa = this.form.value.valorCobrado + valorClasse;
+      this.locacao.multaCobrada = multa;
     }
 
     this.locacao.dtDevolucaoEfetiva = dataDevolucao;
@@ -129,6 +136,13 @@ export class LocacaoFormComponent implements OnInit{
 
   onSalvarForm(){
     this.carregarDados(new Date);
+    this.form.patchValue(this.locacao);
+    this.onSubmit();
+  }
+
+  onSalvarEdicao(){
+    this.locacao.dtDevolucaoPrevista = this.form.value.dtDevolucaoPrevista;
+    this.locacao.valorCobrado = this.form.value.valorCobrado;
     this.form.patchValue(this.locacao);
     this.onSubmit();
   }

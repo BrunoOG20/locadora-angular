@@ -1,3 +1,4 @@
+import { Classe } from "./classe";
 import { Cliente } from "./cliente";
 import { Item } from "./item";
 
@@ -11,5 +12,6 @@ export interface Locacao {
   pago: boolean;
   cliente: Cliente;
   item: Item;
+  classe: Classe;
 
 }

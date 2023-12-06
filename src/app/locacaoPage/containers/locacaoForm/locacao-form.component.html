@@ -11,7 +11,7 @@
 
       <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Data de Devolucao Prevista</mat-label>
-        <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date" [disabled]="true">
+        <input matInput placeholder="Data de Devolucao Prevista" formControlName="dtDevolucaoPrevista" type="date">
         <mat-error *ngIf="form.get('dtDevolucaoPrevista')?.invalid">{{
           getErrorMessage('dtDevolucaoPrevista')
           }}</mat-error>
@@ -19,7 +19,7 @@
 
       <mat-form-field class="full-width" *ngIf="isPaginaEdicao">
         <mat-label>Valor Cobrado</mat-label>
-        <input matInput placeholder="Valor Cobrado" type="number" formControlName="valorCobrado" [disabled]="true">
+        <input matInput placeholder="Valor Cobrado" type="number" formControlName="valorCobrado">
         <mat-error *ngIf="form.get('valorCobrado')?.invalid">{{
           getErrorMessage('valorCobrado')
           }}</mat-error>
@@ -45,7 +45,8 @@
   </mat-card-content>
 
   <mat-card-actions class="actions-center">
-    <button mat-raised-button color="primary" (click)="onSalvarForm()">Salvar</button>
+    <button mat-raised-button color="primary"  *ngIf="!isPaginaEdicao" (click)="onSalvarForm()">Salvar</button>
+    <button mat-raised-button color="primary"  *ngIf="isPaginaEdicao" (click)="onSalvarEdicao()">Salvar</button>
     <button mat-raised-button (click)="onCancel()">Cancelar</button>
   </mat-card-actions>
 </mat-card>
