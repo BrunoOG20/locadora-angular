@@ -1,6 +1,8 @@
+import { Ator } from "./ator";
 import { Classe } from "./classe";
 import { Cliente } from "./cliente";
 import { Item } from "./item";
+import { Titulo } from "./titulo";
 
 export interface Locacao {
   id: string;
@@ -13,5 +15,7 @@ export interface Locacao {
   cliente: Cliente;
   item: Item;
   classe: Classe;
+  titulo: Titulo;
+  atores: Ator[];
 
 }

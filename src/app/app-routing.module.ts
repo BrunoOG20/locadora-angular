@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'cliente/listar',
     loadChildren: () => import('./clienteListPage/clienteList-page.module').then(m => m.ClientePageModule)
+  },
+  {
+    path: 'filtro',
+    loadChildren: () => import('./filtroPage/filtro-page.module').then(m => m.FiltroPageModule)
   }
 ];
 

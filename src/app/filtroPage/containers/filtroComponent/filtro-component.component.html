@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-toolbar class="nav" color="primary">
+    <span>Filtro</span>
+  </mat-toolbar>
+
+<div class="table-container">
+  <mat-form-field class="full-width">
+    <mat-label>Escolha uma opção</mat-label>
+    <mat-select [formControl]="filterControl" name="filter">
+      <mat-option value="titulo">Titulo</mat-option>
+      <mat-option value="categoria">Categoria</mat-option>
+      <mat-option value="ator">Ator</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Pesquisar Locação</mat-label>
+    <input matInput #inputElement (input)="applyFilter($event)"  placeholder="Informe um nome">
+  </mat-form-field>
+
+  <mat-table [dataSource]="locacoes" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="cliente">
+      <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{locacao.cliente.nome}} </mat-cell>
+    </ng-container>
+=
+    <ng-container matColumnDef="item">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{locacao.titulo.nome}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dtLocacao">
+      <mat-header-cell *matHeaderCellDef> Data de Locação </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{locacao.dtLocacao}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <mat-header-cell *matHeaderCellDef> Valor Cobrado </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{locacao.valorCobrado}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{locacao.titulo.categoria}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="atores">
+      <mat-header-cell *matHeaderCellDef> Atores </mat-header-cell>
+      <mat-cell *matCellDef="let locacao"> {{mostrarAtores(locacao.atores)}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+</div>
+</mat-card>
