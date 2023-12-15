@@ -4,6 +4,8 @@
   </mat-toolbar>
 
 <div class="table-container">
+
+  <div class="header">
   <mat-form-field class="full-width">
     <mat-label>Escolha uma opção</mat-label>
     <mat-select [formControl]="filterControl" name="filter">
@@ -17,6 +19,8 @@
     <mat-label>Pesquisar Locação</mat-label>
     <input matInput #inputElement (input)="applyFilter($event)"  placeholder="Informe um nome">
   </mat-form-field>
+
+</div>
 
   <mat-table [dataSource]="locacoes" class="mat-elevation-z8">
 

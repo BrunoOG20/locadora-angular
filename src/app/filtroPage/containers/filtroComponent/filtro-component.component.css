@@ -47,3 +47,9 @@ mat-card {
   justify-content: space-between;
   margin-bottom: 2rem;
 }
+
+.header {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
